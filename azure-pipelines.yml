@@ -27,10 +27,6 @@ stages:
               majorVersion: '$(Major)'
               minorVersion: '$(Minor)'
               patchVersion: '$(Patch)'
-  - stage: Publish
-    jobs:
-      - job: publish_nuget
-        steps:
           - task: Bash@3
             inputs:
               targetType: 'inline'
