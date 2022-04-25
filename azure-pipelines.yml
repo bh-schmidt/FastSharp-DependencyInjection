@@ -1,7 +1,8 @@
 variables:
-  Major: '1'
-  Minor: '0'
-  Patch: '0'
+  Version: '1.0.0'
+  # Major: '1'
+  # Minor: '0'
+  # Patch: '0'
 
 trigger:
 - master
@@ -14,31 +15,28 @@ stages:
     jobs:
       - job: 'build_project'
         steps:
+          # - task: DotNetCoreCLI@2
+          #   inputs:
+          #     command: 'build'
+          #     projects: '**/*.csproj'
+          # - task: DotNetCoreCLI@2
+          #   inputs:
+          #     command: 'pack'
+          #     packagesToPack: '**/*.csproj'
+          #     packDirectory: $(Build.ArtifactStagingDirectory)
+          #     versioningScheme: byPrereleaseNumber
+          #     majorVersion: '$(Major)'
+          #     minorVersion: '$(Minor)'
+          #     patchVersion: '$(Patch)'
           - task: DotNetCoreCLI@2
-            inputs:
-              command: 'build'
-              projects: '**/*.csproj'
-          - task: DotNetCoreCLI@2
+            displayName: Pack Project
             inputs:
               command: 'pack'
               packagesToPack: '**/*.csproj'
-              packDirectory: $(Build.ArtifactStagingDirectory)
-              versioningScheme: byPrereleaseNumber
-              majorVersion: '$(Major)'
-              minorVersion: '$(Minor)'
-              patchVersion: '$(Patch)'
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: 'find . -type f | sort -V'
-              workingDirectory: '$(Build.ArtifactStagingDirectory)'
-          - task: NuGetCommand@2
-            inputs:
-              command: 'push'
-              packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'#'$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-              nuGetFeedType: 'external'
-              publishFeedCredentials: 'Nuget.Org'
-          # - task: DotNetCoreCLI@2
+              versioningScheme: 'byEnvVar'
+              versionEnvVar: '$(variables.Version)'
+
+          # - task: NuGetCommand@2
           #   inputs:
           #     command: 'push'
           #     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
