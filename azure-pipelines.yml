@@ -33,6 +33,6 @@ stages:
           - task: DotNetCoreCLI@2
             inputs:
               command: 'push'
-              packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
               nuGetFeedType: 'external'
               publishFeedCredentials: 'Nuget.Org'
