@@ -1,0 +1,41 @@
+variables:
+  Major: '1'
+  Minor: '0'
+  Patch: '0'
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Build
+    jobs:
+      - job: 'build-project'
+        steps:
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: 'build'
+              projects: '**/*.csproj'
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: 'pack'
+              packagesToPack: '**/*.csproj'
+              versioningScheme: byPrereleaseNumber
+              majorVersion: '$(Major)'
+              minorVersion: '$(Minor)'
+              patchVersion: '$(Patch)'
+  - stage: Publish
+    jobs:
+      - job: publish-nuget
+        steps:
+          - task: NuGetAuthenticate@0
+            inputs:
+              nuGetServiceConnections: 'Nuget.Org'
+          - task: NuGetCommand@2
+            inputs:
+              command: 'push'
+              packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+              nuGetFeedType: 'external'
+              publishFeedCredentials: 'Nuget.Org'
