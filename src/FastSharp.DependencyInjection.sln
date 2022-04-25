@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastSharp.DependencyInjection", "FastSharp.DependencyInjection\FastSharp.DependencyInjection.csproj", "{7A06A8F7-5846-4A7B-84F1-174F16EB5FCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastSharp.DependencyInjection.Tests", "FastSharp.DependencyInjection.Tests\FastSharp.DependencyInjection.Tests.csproj", "{21BA3557-669E-4BEE-A24E-3E99004B2148}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A06A8F7-5846-4A7B-84F1-174F16EB5FCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A06A8F7-5846-4A7B-84F1-174F16EB5FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A06A8F7-5846-4A7B-84F1-174F16EB5FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A06A8F7-5846-4A7B-84F1-174F16EB5FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21BA3557-669E-4BEE-A24E-3E99004B2148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BA3557-669E-4BEE-A24E-3E99004B2148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BA3557-669E-4BEE-A24E-3E99004B2148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BA3557-669E-4BEE-A24E-3E99004B2148}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AC24CB4-6D45-4FAD-8112-3101FDB1F207}
+	EndGlobalSection
+EndGlobal
