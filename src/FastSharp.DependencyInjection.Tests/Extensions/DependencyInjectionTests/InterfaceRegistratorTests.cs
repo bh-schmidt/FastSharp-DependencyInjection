@@ -6,7 +6,6 @@ using Moq;
 using NUnit.Framework;
 using System.Linq;
 using System.Reflection;
-using TextsToStudy.Infra.IoC;
 
 namespace FastSharp.DependencyInjection.Tests.Extensions.DependencyInjectionTests
 {

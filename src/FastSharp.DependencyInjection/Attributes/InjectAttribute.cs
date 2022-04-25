@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace TextsToStudy.Infra.IoC
+namespace FastSharp.DependencyInjection.Attributes
 {
     /// <summary>
     /// Attribute to define the class as injectable and set its lifetime.

@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using FastSharp.DependencyInjection.Attributes;
 
-namespace TextsToStudy.Infra.IoC
+namespace FastSharp.DependencyInjection.Extensions
 {
     /// <summary>
     /// Interface Registrator Extensions.

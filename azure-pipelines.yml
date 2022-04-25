@@ -1,0 +1,24 @@
+trigger:
+  tags:
+    include:
+      - '*.*.*'
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: Pack Project
+    inputs:
+      command: 'pack'
+      packagesToPack: '**/FastSharp.DependencyInjection.csproj'
+      packDirectory: $(Build.ArtifactStagingDirectory)
+      versioningScheme: 'byEnvVar'
+      versionEnvVar: 'BUILD_SOURCEBRANCHNAME'
+
+  - task: NuGetCommand@2
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      nuGetFeedType: 'external'
+      publishFeedCredentials: 'Nuget.Org'

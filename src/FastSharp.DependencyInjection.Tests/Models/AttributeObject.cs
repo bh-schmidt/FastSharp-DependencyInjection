@@ -1,4 +1,4 @@
-﻿using TextsToStudy.Infra.IoC;
+﻿using FastSharp.DependencyInjection.Attributes;
 
 namespace FastSharp.DependencyInjection.Tests.Models
 {
