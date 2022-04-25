@@ -30,12 +30,9 @@ stages:
     jobs:
       - job: build_project
         steps:
-          - task: NuGetAuthenticate@0
-            inputs:
-              nuGetServiceConnections: 'Nuget.Org'
-          - task: NuGetCommand@2
+          - task: DotNetCoreCLI@2
             inputs:
               command: 'push'
-              packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+              packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
               nuGetFeedType: 'external'
               publishFeedCredentials: 'Nuget.Org'
