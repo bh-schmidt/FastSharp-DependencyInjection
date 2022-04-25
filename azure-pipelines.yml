@@ -32,9 +32,15 @@ stages:
               targetType: 'inline'
               script: 'find . -type f | sort -V'
               workingDirectory: '$(Build.ArtifactStagingDirectory)'
-          - task: DotNetCoreCLI@2
+          - task: NuGetCommand@2
             inputs:
               command: 'push'
-              packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+              packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
               nuGetFeedType: 'external'
               publishFeedCredentials: 'Nuget.Org'
+          # - task: DotNetCoreCLI@2
+          #   inputs:
+          #     command: 'push'
+          #     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+          #     nuGetFeedType: 'external'
+          #     publishFeedCredentials: 'Nuget.Org'
