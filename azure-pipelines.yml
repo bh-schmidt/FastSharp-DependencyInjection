@@ -22,13 +22,14 @@ stages:
             inputs:
               command: 'pack'
               packagesToPack: '**/*.csproj'
+              packDirectory: $(Build.ArtifactStagingDirectory)
               versioningScheme: byPrereleaseNumber
               majorVersion: '$(Major)'
               minorVersion: '$(Minor)'
               patchVersion: '$(Patch)'
   - stage: Publish
     jobs:
-      - job: build_project
+      - job: publish_nuget
         steps:
           - task: Bash@3
             inputs:
@@ -38,6 +39,6 @@ stages:
           - task: DotNetCoreCLI@2
             inputs:
               command: 'push'
-              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
+              packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
               nuGetFeedType: 'external'
               publishFeedCredentials: 'Nuget.Org'
