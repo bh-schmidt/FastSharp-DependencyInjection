@@ -30,6 +30,11 @@ stages:
     jobs:
       - job: build_project
         steps:
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: 'find . -type f | sort -V'
+              workingDirectory: '$(Pipeline.Workspace)'
           - task: DotNetCoreCLI@2
             inputs:
               command: 'push'
