@@ -35,7 +35,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'find . -type f | sort -V'
-              workingDirectory: '$(Pipeline.Workspace)'
+              workingDirectory: '$(Build.ArtifactStagingDirectory)'
           - task: DotNetCoreCLI@2
             inputs:
               command: 'push'
