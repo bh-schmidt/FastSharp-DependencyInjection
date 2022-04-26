@@ -5,7 +5,10 @@ variables:
   # Patch: '0'
 
 trigger:
-- master
+  tags:
+    include:
+      - '*.*.*'
+
 
 pool:
   vmImage: ubuntu-latest
