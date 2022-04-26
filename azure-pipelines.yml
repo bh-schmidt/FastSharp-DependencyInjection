@@ -1,5 +1,5 @@
 variables:
-  Version: '1.0.0'
+  Version: '1.0.5'
   # Major: '1'
   # Minor: '0'
   # Patch: '0'
@@ -19,7 +19,7 @@ steps:
       packagesToPack: '**/FastSharp.DependencyInjection.csproj'
       packDirectory: $(Build.ArtifactStagingDirectory)
       versioningScheme: 'byEnvVar'
-      versionEnvVar: '$(variables.Version)'
+      versionEnvVar: 'Version'
     # - task: NuGetCommand@2
     #   inputs:
     #     command: 'push'
