@@ -12,6 +12,13 @@ pool:
 
 
 steps:
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        echo '$(variables.BUILD_SOURCEBRANCHNAME)'
+        
+        echo '$(BUILD_SOURCEBRANCHNAME)'
   - task: DotNetCoreCLI@2
     displayName: Pack Project
     inputs:
@@ -20,12 +27,15 @@ steps:
       packDirectory: $(Build.ArtifactStagingDirectory)
       versioningScheme: 'byEnvVar'
       versionEnvVar: 'Version'
+  
     # - task: NuGetCommand@2
     #   inputs:
     #     command: 'push'
     #     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     #     nuGetFeedType: 'external'
     #     publishFeedCredentials: 'Nuget.Org'
+
+
 
 # stages:
 #   - stage: Build
