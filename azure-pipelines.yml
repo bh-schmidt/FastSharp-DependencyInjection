@@ -17,6 +17,7 @@ steps:
       targetType: 'inline'
       script: |
         echo '$(variables.BUILD_SOURCEBRANCHNAME)'
+        echo '$(variables.Version)'
         
         echo '$(BUILD_SOURCEBRANCHNAME)'
   - task: DotNetCoreCLI@2
