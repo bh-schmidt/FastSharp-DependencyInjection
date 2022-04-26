@@ -6,19 +6,31 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-  - task: DotNetCoreCLI@2
-    displayName: Pack Project
-    inputs:
-      command: 'pack'
-      packagesToPack: '**/FastSharp.DependencyInjection.csproj'
-      packDirectory: $(Build.ArtifactStagingDirectory)
-      versioningScheme: 'byEnvVar'
-      versionEnvVar: 'BUILD_SOURCEBRANCHNAME'
+stages:
+  - stage: 
+    displayName: Push to Nuget
+    jobs:
+      - deployment: Publish
+        displayName: Push to Nuget
+        continueOnError: false
+        environment: 'push-nuget'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: DotNetCoreCLI@2
+                  displayName: Pack Project
+                  inputs:
+                    command: 'pack'
+                    packagesToPack: '**/FastSharp.DependencyInjection.csproj'
+                    packDirectory: $(Build.ArtifactStagingDirectory)
+                    versioningScheme: 'byEnvVar'
+                    versionEnvVar: 'BUILD_SOURCEBRANCHNAME'
 
-  - task: NuGetCommand@2
-    inputs:
-      command: 'push'
-      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-      nuGetFeedType: 'external'
-      publishFeedCredentials: 'Nuget.Org'
+                - task: NuGetCommand@2
+                  displayName: Push to Nuget
+                  inputs:
+                    command: 'push'
+                    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+                    nuGetFeedType: 'external'
+                    publishFeedCredentials: 'Nuget.Org'
